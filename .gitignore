@@ -1,0 +1,11 @@
+# === Large data / artifacts excluded from git (kept locally) ===
+
+# RNA raw data folder (h5ad, mtx, large metadata)
+065_multi_rna/data/
+
+# WGCNA backup archive (~50GB)
+065_multi_rna/WGCNA.tar.gz
+
+# STRING DB raw download (re-downloadable via propagation/propagation.txt wget)
+065_multi_rna/propagation/9606.protein.links.v12.0.txt
+065_multi_rna/propagation/9606.protein.info.v12.0.txt

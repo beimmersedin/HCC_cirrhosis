@@ -1,0 +1,151 @@
+Loading required package: SeuratObject
+Loading required package: sp
+
+Attaching package: ‘SeuratObject’
+
+The following objects are masked from ‘package:base’:
+
+    intersect, t
+
+Loading required package: SingleCellExperiment
+Loading required package: SummarizedExperiment
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following object is masked from ‘package:SeuratObject’:
+
+    intersect
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+
+Attaching package: ‘IRanges’
+
+The following object is masked from ‘package:sp’:
+
+    %over%
+
+Loading required package: GenomeInfoDb
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+
+Attaching package: ‘SummarizedExperiment’
+
+The following object is masked from ‘package:Seurat’:
+
+    Assays
+
+The following object is masked from ‘package:SeuratObject’:
+
+    Assays
+
+
+Attaching package: ‘Matrix’
+
+The following object is masked from ‘package:S4Vectors’:
+
+    expand
+
+Loading data...
+Transposing matrix...
+Creating Seurat object...
+Warning: Data is of class dgTMatrix. Coercing to dgCMatrix.
+Normalizing data...
+Normalizing layer: counts
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Subsetting Cirrhosis Hepatocytes...
+Cirrhosis Hepatocytes after NA removal: 55682
+NT: 8167, TC: 47515
+Running MAST DEG analysis (NT vs TC in Cirrhosis Hepatocytes)...
+
+Done!
+Combining coefficients and standard errors
+Calculating log-fold changes
+Calculating likelihood ratio tests
+Refitting on reduced model...
+
+Done!
+Warning messages:
+1: The `slot` argument of `GetAssayData()` is deprecated as of SeuratObject 5.0.0.
+ℹ Please use the `layer` argument instead.
+ℹ The deprecated feature was likely used in the Seurat package.
+  Please report the issue at <https://github.com/satijalab/seurat/issues>. 
+2: `PackageCheck()` was deprecated in SeuratObject 5.0.0.
+ℹ Please use `rlang::check_installed()` instead.
+ℹ The deprecated feature was likely used in the Seurat package.
+  Please report the issue at <https://github.com/satijalab/seurat/issues>. 
+3: In asMethod(object) :
+  sparse->dense coercion: allocating vector of size 5.3 GiB
+Saving results...
+Total DEGs found: 12839
+Significant DEGs (padj < 0.05): 11699
+Done! Results saved to Deg/results_output/

@@ -1,0 +1,181 @@
+                                                                                                                                               
+  생성 순서                                                                                                                                    
+                                                                                                                                               
+  LinkPeaks() 실행                                                                                                                             
+      ↓                                                                                                                                        
+  Hepatocyte_Peak_Gene_Links.csv (13,297)     ← 중간산물 ①
+      ↓ unique gene 추출
+  Hepatocyte_Peak_Gene_Links_6040_gene.csv    ← 중간산물 ②
+      ↓ TF binding 정보 merge
+  Hepatocyte_TF_Peak_Gene_Links.csv (23,571)  ← 최종 결과
+
+  - ①은 LinkPeaks의 raw output (peak-gene만, TF 정보 없음)
+  - ②는 ①에서 유전자 이름만 뽑은 것
+  - 최종 결과는 ①에 TFmotif 결과를 merge해서 TF→Peak→Gene 3자 관계를 완성한 것
+
+  
+
+
+  (hcc) yeonu@sslimlabgpu:/data1/project/yeonu/065_multi_atac$ Rscript Linkage/Linkage_Hepatocyte.R
+
+NOTE: Dependency discovery took 13 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Loading required package: SeuratObject
+Loading required package: sp
+
+Attaching package: ‘SeuratObject’
+
+The following objects are masked from ‘package:base’:
+
+    intersect, t
+
+Loading required package: ensembldb
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following object is masked from ‘package:SeuratObject’:
+
+    intersect
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:data.table’:
+
+    first, second
+
+The following objects are masked from ‘package:Matrix’:
+
+    expand, unname
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+
+Attaching package: ‘IRanges’
+
+The following object is masked from ‘package:data.table’:
+
+    shift
+
+The following object is masked from ‘package:sp’:
+
+    %over%
+
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘GenomicRanges’
+
+The following object is masked from ‘package:magrittr’:
+
+    subtract
+
+Loading required package: GenomicFeatures
+Loading required package: AnnotationDbi
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Warning: program compiled against libxml 213 using older 209
+Loading required package: AnnotationFilter
+
+Attaching package: ‘AnnotationFilter’
+
+The following object is masked from ‘package:magrittr’:
+
+    not
+
+
+Attaching package: 'ensembldb'
+
+The following object is masked from 'package:stats':
+
+    filter
+
+Loading required package: BSgenome
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: 'Biostrings'
+
+The following object is masked from 'package:base':
+
+    strsplit
+
+Loading required package: BiocIO
+Loading required package: rtracklayer
+
+Attaching package: 'rtracklayer'
+
+The following object is masked from 'package:BiocIO':
+
+    FileForFormat
+
+=== 데이터 로드 시작 ===
+There were 24 warnings (use warnings() to see them)
+ATAC 객체 생성 완료: 2734 cells
+Performing TF-IDF normalization
+Running SVD
+Scaling cell embeddings
+Warning message:
+In RunTFIDF.default(object = GetAssayData(object = object, layer = "counts"),  :
+  Some features contain 0 total counts
+`vst.flavor` is set to 'v2' but could not find glmGamPoi installed.
+Please install the glmGamPoi package for much faster estimation.
+--------------------------------------------
+install.packages('BiocManager')
+BiocManager::install('glmGamPoi')
+--------------------------------------------
+Falling back to native (slower) implementation.
+
+There were 50 or more warnings (use warnings() to see the first 50)
+RNA 통합 완료: 2734 cells, 32913 genes
+
+======================================================================
+Peak-to-Gene Linkage 수행 (distance = 500kb)
+======================================================================
+Found gene coordinates for 9579 genes
+Testing 10404 genes and 60815 peaks
+저장 완료: Hepatocyte_Peak_Gene_Links.csv (13297 links)
+
+======================================================================
+TF-Target Gene 매칭
+======================================================================
+저장 완료: Hepatocyte_TF_Peak_Gene_Links.csv (32916 TF-Peak-Gene triplets)
+
+======================================================================
+Linkage 분석 완료! 결과 위치: /data1/project/yeonu/065_multi_atac/Linkage/results_output/
+======================================================================
+
+출력 파일:
+  Hepatocyte_Peak_Gene_Links.csv       — 전체 Peak-Gene 상관관계
+  Hepatocyte_TF_Peak_Gene_Links.csv   — TF → Peak → Gene 통합 매핑

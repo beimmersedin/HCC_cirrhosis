@@ -1,0 +1,56 @@
+(hcc) yeonu@sslimlabgpu:/data1/project/yeonu/065_multi_atac$ Rscript GRN/GRN_Hepatocyte.R 
+
+NOTE: Dependency discovery took 13 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- The project is out-of-sync -- use `renv::status()` for details.
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:data.table’:
+
+    between, first, last
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+=== 데이터 로드 시작 ===
+Triplets 로드 완료: 32916 rows
+TF scores 로드 완료: 692 motifs × 2734 cells
+RNA sparse count 로드 중 (시간 소요)...
+           used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells  2337583 124.9    3888384  207.7   3888384  207.7
+Vcells 38576085 294.4  185505377 1415.3 231412884 1765.6
+RNA matrix 구축 완료: 32913 genes × 28859 cells
+공통 세포 수: 2734
+타겟 유전자: 316개 중 316개 매칭
+          used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells 2308525 123.3    3888384  207.7   3888384  207.7
+Vcells 8577232  65.5  148404302 1132.3 231412884 1765.6
+
+상관관계 계산 시작 (총 29894 쌍)...
+계산 완료: 29894 / 29894 쌍 (NA 제외)
+전체 GRN 저장 완료: 29894 edges (필터 전)
+Weighted GRN 저장 완료: 562 edges (weight > 0.1)
+
+======================================================================
+GRN 구축 완료!
+======================================================================
+Top 5 Master Regulators:
+      tf_name  n
+1       HNF4A 69
+2        CTCF 44
+3 NR1H2::RXRA 34
+4        RXRG 29
+5        RXRB 28
+
+결과 위치: /data1/project/yeonu/065_multi_atac/GRN/results_output/
+  All_GRN_Weights_Hepatocytes.csv     — 전체 TF-Gene 상관 (causal evidence 입력용)
+  Hepatocyte_Final_Weighted_GRN.csv   — TF-Gene edge list (weight > 0.1)
+  Hepatocyte_Master_Regulators_Summary.csv — TF별 타겟 유전자 수

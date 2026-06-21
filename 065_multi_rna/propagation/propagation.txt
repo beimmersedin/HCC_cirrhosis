@@ -1,0 +1,36 @@
+cd /data1/project/yeonu/065_multi_rna/propagation/
+# 매핑 파일 다운로드
+wget https://stringdb-static.org/download/protein.info.v12.0/9606.protein.info.v12.0.txt.gz
+gunzip 9606.protein.info.v12.0.txt.gz
+
+# 네트워크 링크 파일 다운로드 (용량이 큼, 약 100MB)
+wget https://stringdb-static.org/download/protein.links.v12.0/9606.protein.links.v12.0.txt.gz
+gunzip 9606.protein.links.v12.0.txt.gz
+
+
+
+
+#!/bin/bash
+
+# 1. 파라미터 설정
+PYTHON_SCRIPT="network_propagation.py"
+NETWORK_FILE="string_network.txt"
+SEED_FILE="seed/Hepatocytes_Module1_Cirrhosis_Up_434genes.txt"
+OUTPUT_FILE="results_output/Hepatocytes_NP_Result.txt"
+RESTART_PROB=0.1  # 보통 0.1~0.3 사용 (동국대 프로젝트 기준)
+
+# 2. 분석 실행
+# -constantWeight True: 434개 유전자에 동일한 가중치 부여
+# -normalize True: 초기 확률 분포의 합을 1로 정규화
+python3 $PYTHON_SCRIPT \
+    $NETWORK_FILE \
+    $SEED_FILE \
+    -o $OUTPUT_FILE \
+    -e $RESTART_PROB \
+    -constantWeight True \
+    -normalize True
+
+echo "------------------------------------------"
+echo "분석 완료! 결과 파일: $OUTPUT_FILE"
+echo "상위 10개 유전자 미리보기:"
+sort -k2 -nr $OUTPUT_FILE | head -n 10
